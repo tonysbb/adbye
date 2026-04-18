@@ -22,6 +22,8 @@
   - iLovePDF Pro
 - `egern/pdfexpert.module.yaml`
   - PDF Expert Pro
+- `egern/pdfexpert_diagnose.module.yaml`
+  - PDF Expert Diagnose
 - `egern/camscanner.module.yaml`
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
@@ -44,12 +46,15 @@
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
     ├── pdfexpert.module.yaml
+    ├── pdfexpert_diagnose.module.yaml
     ├── spotify.module.yaml
     ├── youtube_ads.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
         ├── ilovepdf_user.js
+        ├── pdfexpert_diag_request.js
+        ├── pdfexpert_diag_response.js
         ├── pdfexpert_subscription_refresh.js
         ├── rakuten_link_empty.js
         ├── respond_empty_200.js
@@ -73,6 +78,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/Quantumult%20X/jpapp.conf
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert_diagnose.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.yaml
@@ -89,7 +95,9 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - PDF Expert Pro：
   - Quantumult X / Surge 的订阅检查改写改成 Egern `http_response`
-  - `license.readdle.com` 已写入 `mitm.hostnames`
+  - `license.readdle.com` / `license.pdfexpert.com` 已写入 `mitm.hostnames`
+- PDF Expert Diagnose：
+  - 用于抓 PDF Expert 在 Egern 下实际命中的请求 URL 与响应状态
 - 扫描全能王 Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
