@@ -11,7 +11,7 @@
 
 ### Quantumult X
 
-- `jpapp.conf`
+- `Quantumult X/jpapp.conf`
   - 日本 App 去广告
 
 ### Egern
@@ -36,7 +36,8 @@
 ```text
 .
 ├── README.md
-├── jpapp.conf
+├── Quantumult X
+│   └── jpapp.conf
 └── egern
     ├── camscanner.module.yaml
     ├── busuu.module.yaml
@@ -63,7 +64,7 @@
 ### Quantumult X
 
 ```text
-https://raw.githubusercontent.com/tonysbb/adbye/main/jpapp.conf
+https://raw.githubusercontent.com/tonysbb/adbye/main/Quantumult%20X/jpapp.conf
 ```
 
 ### Egern
