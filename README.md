@@ -13,8 +13,6 @@
 
 - `jpapp.conf`
   - 日本 App 去广告
-- `qx_sources/adultraplus.conf`
-  - 去开屏广告融合版 Ultra+ 原始镜像
 
 ### Egern
 
@@ -28,18 +26,8 @@
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
   - Busuu Premium
-- `egern/busuu_diagnose.module.yaml`
-  - Busuu 诊断模块
-- `egern/caixin.module.yaml`
-  - 财新周刊净化
-- `egern/wechat_applet.module.yaml`
-  - 微信小程序净化
 - `egern/youtube_ads.module.yaml`
   - YouTube 去广告
-- `egern/netease_ads.module.yaml`
-  - 网易云净化
-- `egern/wechat_unblock_url.module.yaml`
-  - 微信解锁链接
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -49,39 +37,25 @@
 .
 ├── README.md
 ├── jpapp.conf
-├── qx_sources
-│   └── adultraplus.conf
 └── egern
-    ├── caixin.module.yaml
     ├── camscanner.module.yaml
     ├── busuu.module.yaml
-    ├── busuu_diagnose.module.yaml
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
-    ├── netease_ads.module.yaml
     ├── pdfexpert.module.yaml
     ├── spotify.module.yaml
-    ├── wechat_applet.module.yaml
-    ├── wechat_unblock_url.module.yaml
     ├── youtube_ads.module.yaml
     └── scripts
-        ├── applet.legacy.js
         ├── camscanner_query_property.js
         ├── busuu_user.js
-        ├── busuu_diag_request.js
-        ├── busuu_diag_response.js
-        ├── caixinads.legacy.js
         ├── ilovepdf_user.js
-        ├── netease.adblock.legacy.js
         ├── pdfexpert_subscription_refresh.js
         ├── rakuten_link_empty.js
         ├── respond_empty_200.js
         ├── spotify_artist_album_request.js
         ├── spotify_customize_request.js
-        └── spotify_proto_response.js
-        ├── weixin110.legacy.js
-        ├── youtube.response.legacy.js
-        └── zhangshanggongjiao.legacy.js
+        ├── spotify_proto_response.js
+        └── youtube.response.legacy.js
 ```
 
 ## 远程地址
@@ -100,12 +74,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu_diagnose.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/caixin.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/wechat_applet.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/netease_ads.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/wechat_unblock_url.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 ```
 
@@ -123,33 +92,14 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
-- Busuu Diagnose：
-  - 用于抓取 Egern 实际命中的 Busuu URL 和响应状态，定位真实接口
-- 财新周刊净化：
-  - Quantumult X `script-response-body` 改成 Egern `http_response`
-- 微信小程序净化：
-  - `reject-200` 改成 Egern `http_request` 空响应
-  - `response-body` 改成 Egern `body_rewrites`
-  - `script-response-body` 改成 Egern `http_response`
 - YouTube 去广告：
   - `url 302` 改成 Egern `url_rewrites`
   - `reject-200` 改成 Egern `http_request` 空响应
   - `script-response-body` 改成 Egern `http_response`
-- 网易云净化：
-  - `script-response-body` 改成 Egern `http_response`
-  - `reject-200` 改成 Egern `http_request` 空响应
-- 微信解锁链接：
-  - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
   - protobuf 响应改写改成 Egern `http_response` + `binary_body`
-
-## 特殊说明
-
-- `qx_sources/adultraplus.conf` 目前是 item 1 的原始镜像。
-- 这条不是单一 rewrite，而是 2600 行的大型集合，混合了大量 `reject`、`script-response-body`、`request-body`、`response-body` 和外部脚本。
-- 它需要按功能拆成多批 Egern 模块，不适合和普通单条 rewrite 一次性粗暴转写，否则后续很难定位失效点。
 
 ## 使用说明
 
@@ -175,5 +125,4 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - `2026-04-18`：新增日本 App 的 Egern 模块
 - `2026-04-18`：新增 iLovePDF、PDF Expert、扫描全能王、Spotify 的 Egern 模块
 - `2026-04-18`：新增 Busuu 的 Egern 模块
-- `2026-04-18`：新增财新、微信小程序、YouTube、网易云、微信解锁链接的 Egern 模块
-- `2026-04-18`：镜像保存 item 1 `adultraplus.conf`，待后续拆分转换
+- `2026-04-18`：新增 YouTube 的 Egern 模块
