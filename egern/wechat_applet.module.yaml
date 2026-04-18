@@ -1,0 +1,74 @@
+name: "微信小程序净化"
+description: "Egern 模块，处理部分微信小程序和公众号广告接口。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "message.fill"
+
+body_rewrites:
+  - response_regex:
+      match: "^(http|https)://mp\\.weixin\\.qq\\.com/mp/getappmsgad(?:\\?.*)?$"
+      find: "advertisement"
+      replace: "ddgksf2013"
+
+scriptings:
+  - http_request:
+      name: "便利蜂广告空响应"
+      match: "^https?://api\\.blibee\\.com/cvsnotify-api/cvs/notify/app/banner/v\\d+$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+  - http_request:
+      name: "顺丰小程序广告空响应"
+      match: "^https?://ucmp\\.sf-express\\.com/proxy/operation-platform/info-flow-adver/query$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+  - http_response:
+      name: "掌上公交小程序净化"
+      match: "^https?://wx\\.mygolbs\\.com/WxBusServer/ApiData\\.do(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/zhangshanggongjiao.legacy.js"
+      body_required: true
+      timeout: 10
+  - http_response:
+      name: "通用小程序文章流净化"
+      match: "^(https?://)?([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\\.)+[a-zA-Z]{2,}(:\\d+)?/wp-json/[a-zA-Z0-9_-]+/(mp/)?v\\d/posts(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/applet.legacy.js"
+      body_required: true
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "api.blibee.com"
+    - "ucmp.sf-express.com"
+    - "www.bbkj.work"
+    - "wx.wxqqurl.cn"
+    - "wp3.lobdol.cn"
+    - "awg.enmonster.com"
+    - "mp.weixin.qq.com"
+    - "wx.mygolbs.com"
+    - "jabi.coding.net"
+    - "api.bspapp.com"
+    - "3dd0be8a-54fe-43ff-a0e7-f670c4f20432.bspapp.com"
+    - "*.tslt.xyz"
+    - "g.syshhc.top"
+    - "c.jxjt888.top"
+    - "www.laoguikeji.cn"
+    - "qj.bpojie.com"
+    - "b.tslt.xyz"
+    - "m.xgjyouhui.com"
+    - "www.freeheikeji.cn"
+    - "xcx.xianbaow.com"
+    - "*.smkj33.top"
+    - "*.ddly666.top"
+    - "hkj178.com"
+    - "a.jxjt888.top"
+    - "lysl2020.com"
+    - "www.i3zh.com"
+    - "iosoi.cn"
+    - "jt.jxjt888.top"
+    - "gjsx.vip"
+    - "d.syshhc.top"
+    - "gz.gongzijx.com"
+    - "tvapp.guilaile.cn"
+    - "www.benbenfx.xyz"
+    - "4thdimension.top"
+    - "tan.ipnas.ltd"

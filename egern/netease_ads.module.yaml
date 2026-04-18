@@ -1,0 +1,24 @@
+name: "网易云净化"
+description: "Egern 模块，净化网易云音乐常见推广、弹窗和侧栏广告接口。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "music.note.list"
+
+scriptings:
+  - http_response:
+      name: "网易云广告净化"
+      match: "^https?://interface(\\d)?\\.music\\.163\\.com/e?api/(link/home/framework/tab|link/page/discovery/resource/show|link/page/rcmd/resource/show|ios/upgrade/get|search/default/keyword/list|search/rcmd/keyword/get|search/chart/list|search/chart/detail|search/suggest/keyword/get|search/specialkeyword/get|ad/loading/get|ad/loading/current|ad/get|link/position/show/resource|link/scene/show/resource|vip/cashier/tspopup/get|vipnewcenter/app/resource/newaccountpage|side-bar/mini-program/music-service/account|delivery/deliver|delivery/batch-deliver|yunbei/account/entrance/get|creator/musician/reminder/message/get|batch)(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/netease.adblock.legacy.js"
+      body_required: true
+      timeout: 20
+      max_size: 2097152
+  - http_request:
+      name: "网易云推广空响应"
+      match: "^https?://interface(\\d)?\\.music\\.163\\.com/(?:e?api/(content/activity/music/jar/template/list|sp/flow/popup/query|vipmall/couponcfg/get|comment/feed/inserted/resources|resource-exposure/config)|w?eapi/(resource-exposure/)?activity)(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "interface*.music.163.com"

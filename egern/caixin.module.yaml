@@ -1,0 +1,18 @@
+name: "财新周刊净化"
+description: "Egern 模块，处理财新周刊相关文章接口中的广告展示时间。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "newspaper.fill"
+
+scriptings:
+  - http_response:
+      name: "财新广告净化"
+      match: "^https?://ipadcms\\.caixin\\.com/tmp/articles(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/caixinads.legacy.js"
+      body_required: true
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "ipadcms.caixin.com"

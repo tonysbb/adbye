@@ -1,0 +1,20 @@
+name: "微信解锁链接"
+description: "Egern 模块，处理微信风控拦截页，允许跳转真实链接。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "link.circle.fill"
+
+scriptings:
+  - http_response:
+      name: "微信拦截链接解锁"
+      match: "^https://(weixin110\\.qq|security\\.wechat)\\.com/cgi-bin/mmspamsupport-bin/newredirectconfirmcgi\\?.*$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/weixin110.legacy.js"
+      body_required: true
+      timeout: 20
+      max_size: 2097152
+
+mitm:
+  hostnames:
+    - "weixin110.qq.com"
+    - "security.wechat.com"
