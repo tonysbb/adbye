@@ -94,8 +94,8 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - iLovePDF Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - PDF Expert Pro：
-  - Quantumult X / Surge 的订阅检查改写改成 Egern `http_response`
-  - `license.readdle.com` / `license.pdfexpert.com` 已写入 `mitm.hostnames`
+  - 基于 Egern 实测命中的 `account/attach_receipt` 接口做 `http_response` 改写
+  - `license.pdfexpert.com` 已写入 `mitm.hostnames`
 - PDF Expert Diagnose：
   - 用于抓 PDF Expert 在 Egern 下实际命中的请求 URL 与响应状态
 - 扫描全能王 Pro：

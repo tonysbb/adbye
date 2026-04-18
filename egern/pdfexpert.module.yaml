@@ -8,12 +8,11 @@ icon: "doc.richtext.fill"
 scriptings:
   - http_response:
       name: "PDF Expert 订阅状态"
-      match: "^https://(?:license\\.(?:readdle|pdfexpert)\\.com)(?::443)?/api/.*/subscription/(refresh|check)(?:\\?.*)?$"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/account/attach_receipt(?:\\?.*)?$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_subscription_refresh.js"
       body_required: true
       timeout: 10
 
 mitm:
   hostnames:
-    - "license.readdle.com"
     - "license.pdfexpert.com"
