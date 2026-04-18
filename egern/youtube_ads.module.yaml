@@ -1,0 +1,43 @@
+name: "YouTube 去广告"
+description: "Egern 模块，处理 YouTube 视频广告、统计请求与页面响应净化。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "play.rectangle.fill"
+
+url_rewrites:
+  - match: "(^https?://[\\w-]+\\.googlevideo\\.com/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+)"
+    location: "$1$2$3"
+    status_code: 302
+
+scriptings:
+  - http_request:
+      name: "YouTube OAD 空响应"
+      match: "^https?://[\\w-]+\\.googlevideo\\.com/(?!(dclk_video_ads|videoplayback\\?)).+&oad(?:=.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+  - http_request:
+      name: "YouTube 通用广告空响应"
+      match: "^https?://(www|s)\\.youtube\\.com/(api/stats/ads|pagead|ptracking)(?:[/?].*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+  - http_request:
+      name: "YouTube QOE 广告空响应"
+      match: "^https?://s\\.youtube\\.com/api/stats/qoe\\?adcontext.*$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/respond_empty_200.js"
+      timeout: 10
+  - http_response:
+      name: "YouTube 页面净化"
+      match: "^https?://youtubei\\.googleapis\\.com/youtubei/v1/(browse|next|player|search|reel/reel_watch_sequence|guide|account/get_setting|get_watch)(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/youtube.response.legacy.js"
+      body_required: true
+      timeout: 20
+      max_size: 5242880
+
+mitm:
+  hostnames:
+    - "-redirector*.googlevideo.com"
+    - "*.googlevideo.com"
+    - "www.youtube.com"
+    - "s.youtube.com"
+    - "youtubei.googleapis.com"
