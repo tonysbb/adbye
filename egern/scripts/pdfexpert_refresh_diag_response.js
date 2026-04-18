@@ -14,16 +14,16 @@ export default async function(ctx) {
     } catch (_) {}
   }
   const now = Date.now();
-  const key = `pdfexpert:refresh:resp:${ctx.response.status}:${ctx.request.url}`;
+  const key = `pdfexpert:license:resp:${ctx.response.status}:${ctx.request.url}`;
   const last = Number(ctx.storage.get(key) || "0");
   if (now - last < 10000) {
     return {};
   }
   ctx.storage.set(key, String(now));
   ctx.notify({
-    title: "PDF Refresh 响应",
+    title: "PDF License 响应",
     subtitle: String(ctx.response.status),
-    body: shorten(body || ctx.request.url),
+    body: shorten(`${ctx.request.url}\n${body}`),
     sound: false,
     duration: 10,
   });

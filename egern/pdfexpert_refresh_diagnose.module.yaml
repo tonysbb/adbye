@@ -1,5 +1,5 @@
-name: "PDF Expert Refresh Diagnose"
-description: "诊断 PDF Expert 当前版本 subscription/refresh 的真实请求体与响应体。"
+name: "PDF Expert License Diagnose"
+description: "诊断 PDF Expert 当前版本 license 接口的真实路径、请求体与响应体。"
 author: "tonysbb"
 homepage: "https://github.com/tonysbb/adbye"
 manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
@@ -7,14 +7,14 @@ icon: "stethoscope"
 
 scriptings:
   - http_request:
-      name: "PDF Expert Refresh 请求诊断"
-      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/subscription/refresh(?:\\?.*)?$"
+      name: "PDF Expert License 请求诊断"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/.*$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_refresh_diag_request.js"
       body_required: true
       timeout: 10
   - http_response:
-      name: "PDF Expert Refresh 响应诊断"
-      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/subscription/refresh(?:\\?.*)?$"
+      name: "PDF Expert License 响应诊断"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/.*$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_refresh_diag_response.js"
       body_required: true
       timeout: 10

@@ -14,16 +14,16 @@ export default async function(ctx) {
     } catch (_) {}
   }
   const now = Date.now();
-  const key = `pdfexpert:refresh:req:${ctx.request.url}`;
+  const key = `pdfexpert:license:req:${ctx.request.method}:${ctx.request.url}`;
   const last = Number(ctx.storage.get(key) || "0");
   if (now - last < 10000) {
     return {};
   }
   ctx.storage.set(key, String(now));
   ctx.notify({
-    title: "PDF Refresh 请求",
+    title: "PDF License 请求",
     subtitle: ctx.request.method,
-    body: shorten(body || ctx.request.url),
+    body: shorten(`${ctx.request.url}\n${body}`),
     sound: false,
     duration: 10,
   });
