@@ -20,12 +20,6 @@
   - 日本 App 去广告
 - `egern/ilovepdf.module.yaml`
   - iLovePDF Pro
-- `egern/pdfexpert.module.yaml`
-  - PDF Expert Pro
-- `egern/pdfexpert_diagnose.module.yaml`
-  - PDF Expert Diagnose
-- `egern/pdfexpert_trace.module.yaml`
-  - PDF Expert Trace
 - `egern/camscanner.module.yaml`
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
@@ -45,22 +39,11 @@
     ├── busuu.module.yaml
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
-    ├── pdfexpert.module.yaml
-    ├── pdfexpert_diagnose.module.yaml
-    ├── pdfexpert_trace.module.yaml
     ├── spotify.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
         ├── ilovepdf_user.js
-        ├── pdfexpert_diag_request.js
-        ├── pdfexpert_diag_response.js
-        ├── pdfexpert_trace_request.js
-        ├── pdfexpert_trace_response.js
-        ├── pdfexpert_license_session.js
-        ├── pdfexpert_subscription_refresh.js
-        ├── pdfexpert_attach_receipt.js
-        ├── pdfexpert_usage.js
         ├── rakuten_link_empty.js
         ├── respond_empty_200.js
         ├── spotify_artist_album_request.js
@@ -81,9 +64,6 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/Quantumult%20X/jpapp.conf
 ```text
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert_diagnose.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert_trace.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
@@ -97,15 +77,6 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - `hostname` 改成 Egern `mitm.hostnames`
 - iLovePDF Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
-- PDF Expert Pro：
-  - `account/attach_receipt` 基于真实响应结构补齐 iOS 订阅态
-  - `auth/session/licenseServer` 与 `usage` 都补齐会员态字段
-  - `subscription/(refresh|check)` 保留 `http_response` 改写
-  - `license.readdle.com` / `license.pdfexpert.com` / `middleman.apps.readdle.com` 已写入 `mitm.hostnames`
-- PDF Expert Diagnose：
-  - 用于抓 PDF Expert 在 Egern 下实际命中的请求 URL 与响应状态
-- PDF Expert Trace：
-  - 用于扩大抓取范围，追踪所有可能影响会员 UI 的 Readdle / PDF Expert 接口
 - 扫描全能王 Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
@@ -137,5 +108,5 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - `2025-01-07`：增加 LINE 聊天窗口 banner 广告拦截
 - `2025-11-19`：增加 Rakuten Link banner 广告拦截
 - `2026-04-18`：新增日本 App 的 Egern 模块
-- `2026-04-18`：新增 iLovePDF、PDF Expert、扫描全能王、Spotify 的 Egern 模块
+- `2026-04-18`：新增 iLovePDF、扫描全能王、Spotify 的 Egern 模块
 - `2026-04-18`：新增 Busuu 的 Egern 模块
