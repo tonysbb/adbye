@@ -55,6 +55,7 @@
         ├── ilovepdf_user.js
         ├── pdfexpert_diag_request.js
         ├── pdfexpert_diag_response.js
+        ├── pdfexpert_license_session.js
         ├── pdfexpert_subscription_refresh.js
         ├── pdfexpert_attach_receipt.js
         ├── pdfexpert_usage.js
@@ -97,7 +98,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - PDF Expert Pro：
   - `account/attach_receipt` 基于真实响应结构补齐 iOS 订阅态
-  - `usage` 响应去掉 `AccessDeniedException`
+  - `auth/session/licenseServer` 与 `usage` 都补齐会员态字段
   - `subscription/(refresh|check)` 保留 `http_response` 改写
   - `license.readdle.com` / `license.pdfexpert.com` / `middleman.apps.readdle.com` 已写入 `mitm.hostnames`
 - PDF Expert Diagnose：

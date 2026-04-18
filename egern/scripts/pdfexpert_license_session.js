@@ -13,11 +13,14 @@ const PREMIUM_META = {
 
 export default async function(ctx) {
   const body = await ctx.response.json();
-  body.errorType = null;
-  body.error = false;
-  if (!body.response || typeof body.response !== "object") {
-    body.response = {};
+  if (!body.auth || typeof body.auth !== "object") {
+    body.auth = {};
   }
-  Object.assign(body.response, PREMIUM_META);
+  body.auth.errorType = null;
+  body.auth.error = false;
+  if (!body.auth.response || typeof body.auth.response !== "object") {
+    body.auth.response = {};
+  }
+  Object.assign(body.auth.response, PREMIUM_META);
   return { body };
 }
