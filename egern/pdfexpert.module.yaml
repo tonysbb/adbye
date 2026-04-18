@@ -6,13 +6,19 @@ manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
 icon: "doc.richtext.fill"
 
 scriptings:
+  - http_request:
+      name: "PDF Expert 恢复购买"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/account/attach_receipt(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_attach_receipt.js"
+      timeout: 10
   - http_response:
       name: "PDF Expert 订阅状态"
-      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/account/attach_receipt(?:\\?.*)?$"
+      match: "^https://(?:license\\.(?:readdle|pdfexpert)\\.com)(?::443)?/api/.*/subscription/(refresh|check)(?:\\?.*)?$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_subscription_refresh.js"
       body_required: true
       timeout: 10
 
 mitm:
   hostnames:
+    - "license.readdle.com"
     - "license.pdfexpert.com"

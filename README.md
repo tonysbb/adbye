@@ -53,6 +53,7 @@
         ├── camscanner_query_property.js
         ├── busuu_user.js
         ├── ilovepdf_user.js
+        ├── pdfexpert_attach_receipt.js
         ├── pdfexpert_diag_request.js
         ├── pdfexpert_diag_response.js
         ├── pdfexpert_subscription_refresh.js
@@ -94,8 +95,9 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - iLovePDF Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - PDF Expert Pro：
-  - 基于 Egern 实测命中的 `account/attach_receipt` 接口做 `http_response` 改写
-  - `license.pdfexpert.com` 已写入 `mitm.hostnames`
+  - `account/attach_receipt` 在 `http_request` 阶段直接返回本地 `200 + Pro` 结果
+  - `subscription/(refresh|check)` 保留 `http_response` 改写
+  - `license.readdle.com` / `license.pdfexpert.com` 已写入 `mitm.hostnames`
 - PDF Expert Diagnose：
   - 用于抓 PDF Expert 在 Egern 下实际命中的请求 URL 与响应状态
 - 扫描全能王 Pro：
