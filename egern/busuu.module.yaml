@@ -7,31 +7,31 @@ icon: "character.book.closed.fill"
 
 body_rewrites:
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"tier\":\"\\w+\""
       replace: "\"tier\":\"plus\""
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"free_trial_eligible\":\\w+"
       replace: "\"free_trial_eligible\":false"
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"is_premium\":\\w+"
       replace: "\"is_premium\":true"
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"free_trial\":\\w+"
       replace: "\"free_trial\":true"
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"expiration\":\\d+"
       replace: "\"expiration\":3745855150"
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"next_charge\":\\d+"
       replace: "\"next_charge\":3745855150"
   - response_regex:
-      match: "^https://api\\.busuu\\.com(?::443)?/users/me(?:[/?].*)?$"
+      match: "^https://api\\.busuu\\.com(?::443)?/(users/(?:me|\\d+)|payments/mobile/subscription)(?:[/?].*)?$"
       find: "\"name\":\".*?\""
       replace: "\"name\":\"彭于晏解锁\""
 
