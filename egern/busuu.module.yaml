@@ -8,7 +8,7 @@ icon: "character.book.closed.fill"
 scriptings:
   - http_response:
       name: "Busuu 用户信息改写"
-      match: "^https://api\\.busuu\\.com/users/me$"
+      match: "^https://api\\.busuu\\.com/users/me(?:\\?.*)?$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/busuu_user.js"
       body_required: true
       timeout: 10
