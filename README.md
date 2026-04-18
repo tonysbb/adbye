@@ -24,8 +24,6 @@
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
   - Busuu Premium
-- `egern/moji.module.yaml`
-  - MOJi Dictionary
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -41,13 +39,11 @@
     ├── busuu.module.yaml
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
-    ├── moji.module.yaml
     ├── spotify.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
         ├── ilovepdf_user.js
-        ├── moji_privileges.js
         ├── rakuten_link_empty.js
         ├── respond_empty_200.js
         ├── spotify_artist_album_request.js
@@ -70,7 +66,6 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/moji.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 ```
 
@@ -86,9 +81,6 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
-- MOJi Dictionary：
-  - Quantumult X `script-response-body` 改成 Egern `http_response`
-  - `hostname` 改成 Egern `mitm.hostnames`
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
@@ -118,4 +110,3 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - `2026-04-18`：新增日本 App 的 Egern 模块
 - `2026-04-18`：新增 iLovePDF、扫描全能王、Spotify 的 Egern 模块
 - `2026-04-18`：新增 Busuu 的 Egern 模块
-- `2026-04-19`：新增 MOJi Dictionary 的 Egern 模块
