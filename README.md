@@ -26,6 +26,8 @@
   - Busuu Premium
 - `egern/youtube_ads.module.yaml`
   - YouTube 去广告
+- `egern/youtube_merged.module.yaml`
+  - YouTube 合并版
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -43,6 +45,7 @@
     ├── jpapp.module.yaml
     ├── spotify.module.yaml
     ├── youtube_ads.module.yaml
+    ├── youtube_merged.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
@@ -72,6 +75,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yam
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module.yaml
 ```
 
 ## 已完成的重写方式
@@ -90,6 +94,10 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.ya
   - `url 302` 改成 Egern `url_rewrites`
   - `reject-200` 改成 Egern `http_request` 空响应
   - `script-response-body` 改成 Egern `http_response`
+- YouTube 合并版：
+  - 保留 `Maasea` 响应增强脚本的默认行为
+  - 叠加 `adbye` 的广告请求空响应与 `ctier` URL 修正
+  - 作为单独模块测试，不建议和 `youtube_ads.module.yaml` 同时启用
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
@@ -100,6 +108,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.ya
 - 模块测试阶段，建议一条一条单独添加到 Egern，确认通过后再并入主配置。
 - 这批模块都依赖 MITM；没开 MITM 或证书没信任，行为不会完整生效。
 - Spotify 这类二进制响应改写模块，建议单独测试，不要和同类脚本并开。
+- `youtube_merged.module.yaml` 和 `youtube_ads.module.yaml` 二选一，不要同时开。
 
 如果效果不对，优先检查：
 
@@ -120,3 +129,4 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.ya
 - `2026-04-18`：新增 iLovePDF、扫描全能王、Spotify 的 Egern 模块
 - `2026-04-18`：新增 Busuu 的 Egern 模块
 - `2026-04-18`：新增 YouTube 的 Egern 模块
+- `2026-04-19`：新增 YouTube 合并版模块
