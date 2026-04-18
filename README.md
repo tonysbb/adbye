@@ -26,6 +26,8 @@
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
   - Busuu Premium
+- `egern/busuu_diagnose.module.yaml`
+  - Busuu 诊断模块
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -38,6 +40,7 @@
 └── egern
     ├── camscanner.module.yaml
     ├── busuu.module.yaml
+    ├── busuu_diagnose.module.yaml
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
     ├── pdfexpert.module.yaml
@@ -45,6 +48,8 @@
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
+        ├── busuu_diag_request.js
+        ├── busuu_diag_response.js
         ├── ilovepdf_user.js
         ├── pdfexpert_subscription_refresh.js
         ├── rakuten_link_empty.js
@@ -69,6 +74,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu_diagnose.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 ```
 
@@ -86,6 +92,8 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
+- Busuu Diagnose：
+  - 用于抓取 Egern 实际命中的 Busuu URL 和响应状态，定位真实接口
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
