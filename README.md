@@ -1,20 +1,31 @@
 # adbye
 
-日本系 App 去广告仓库，当前同时维护：
+自用 rewrite / module 仓库，当前同时维护：
 
-- Quantumult X rewrite：`jpapp.conf`
-- Egern module：`egern/jpapp.module.yaml`
+- Quantumult X：原始 rewrite 配置
+- Egern：重写后的本地化模块与脚本
 
-## 覆盖内容
+目标不是做“大而全”公共仓库，而是把常用条目拆成可控、可维护、可单独测试的模块。
 
-- LINE：
-  - Home / News / Wallet 广告
-  - 群聊窗口广告
-  - 聊天窗口 banner 广告
-- 东京 Metro App：
-  - `advertised_banners`
-- Rakuten Link：
-  - banner 广告请求
+## 当前模块
+
+### Quantumult X
+
+- `jpapp.conf`
+  - 日本 App 去广告
+
+### Egern
+
+- `egern/jpapp.module.yaml`
+  - 日本 App 去广告
+- `egern/ilovepdf.module.yaml`
+  - iLovePDF Pro
+- `egern/pdfexpert.module.yaml`
+  - PDF Expert Pro
+- `egern/camscanner.module.yaml`
+  - 扫描全能王 Pro
+- `egern/spotify.module.yaml`
+  - Spotify Premium
 
 ## 仓库结构
 
@@ -23,16 +34,24 @@
 ├── README.md
 ├── jpapp.conf
 └── egern
+    ├── camscanner.module.yaml
+    ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
+    ├── pdfexpert.module.yaml
+    ├── spotify.module.yaml
     └── scripts
-        └── rakuten_link_empty.js
+        ├── camscanner_query_property.js
+        ├── ilovepdf_user.js
+        ├── pdfexpert_subscription_refresh.js
+        ├── rakuten_link_empty.js
+        ├── spotify_artist_album_request.js
+        ├── spotify_customize_request.js
+        └── spotify_proto_response.js
 ```
 
-## 使用方式
+## 远程地址
 
 ### Quantumult X
-
-远程 rewrite 地址：
 
 ```text
 https://raw.githubusercontent.com/tonysbb/adbye/main/jpapp.conf
@@ -40,29 +59,44 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/jpapp.conf
 
 ### Egern
 
-远程 module 地址：
-
 ```text
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 ```
 
-这份模块已经把原 Quantumult X 配置拆开重写：
+## 已完成的重写方式
 
-- `url reject` 规则改成 Egern `url_rewrites`
-- `url reject-200` 规则改成 Egern `http_request` 脚本，直接返回 `200` 空响应
-- `hostname` 改成 Egern `mitm.hostnames`
+- 日本 App 去广告：
+  - `url reject` 改成 Egern `url_rewrites`
+  - `url reject-200` 改成 Egern `http_request` 脚本
+  - `hostname` 改成 Egern `mitm.hostnames`
+- iLovePDF Pro：
+  - Quantumult X `script-response-body` 改成 Egern `http_response`
+- PDF Expert Pro：
+  - Quantumult X `script-request-body` 改成 Egern `http_request`
+- 扫描全能王 Pro：
+  - Quantumult X `script-response-body` 改成 Egern `http_response`
+- Spotify Premium：
+  - 请求头处理改成 Egern `http_request`
+  - URL 修正改成 Egern `http_request`
+  - protobuf 响应改写改成 Egern `http_response` + `binary_body`
 
-## 适配说明
+## 使用说明
 
-- 目标平台：Egern / Quantumult X
-- 目标地区：日本常用 App
-- 适合“保留核心功能，仅屏蔽已确认广告接口”的保守策略
+- 模块测试阶段，建议一条一条单独添加到 Egern，确认通过后再并入主配置。
+- 这批模块都依赖 MITM；没开 MITM 或证书没信任，行为不会完整生效。
+- Spotify 这类二进制响应改写模块，建议单独测试，不要和同类脚本并开。
 
-如果广告仍然存在，优先检查：
+如果效果不对，优先检查：
 
-- App 是否更新了接口
-- 是否已经启用 MITM
-- 是否清理了 App 缓存
+- App 版本是否变化
+- 接口路径是否变化
+- MITM 是否启用
+- CA 是否已安装并信任
+- App 缓存是否需要清理
 
 ## 更新记录
 
@@ -71,4 +105,5 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
 - `2024-12-06`：增加 LINE 群聊窗口广告拦截
 - `2025-01-07`：增加 LINE 聊天窗口 banner 广告拦截
 - `2025-11-19`：增加 Rakuten Link banner 广告拦截
-- `2026-04-18`：新增 Egern module 版本，拆分重写 Quantumult X 规则
+- `2026-04-18`：新增日本 App 的 Egern 模块
+- `2026-04-18`：新增 iLovePDF、PDF Expert、扫描全能王、Spotify 的 Egern 模块

@@ -1,0 +1,19 @@
+name: "扫描全能王 Pro"
+description: "Egern 模块，改写扫描全能王会员属性查询结果。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "camera.viewfinder"
+
+scriptings:
+  - http_response:
+      name: "扫描全能王会员属性"
+      match: "^https://(api|api-cs)\\.intsig\\.net/purchase/cs/query_property\\?.*$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/camscanner_query_property.js"
+      body_required: true
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "api.intsig.net"
+    - "api-cs.intsig.net"

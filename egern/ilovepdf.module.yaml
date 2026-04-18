@@ -1,0 +1,18 @@
+name: "iLovePDF Pro"
+description: "Egern 模块，调整 iLovePDF 用户信息接口，放开主要功能限制并标记为高级用户。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "doc.text.fill"
+
+scriptings:
+  - http_response:
+      name: "iLovePDF 用户信息改写"
+      match: "^https://service\\.ilovepdf\\.com/v1/user$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/ilovepdf_user.js"
+      body_required: true
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "service.ilovepdf.com"

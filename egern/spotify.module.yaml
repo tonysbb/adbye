@@ -1,0 +1,31 @@
+name: "Spotify Premium"
+description: "Egern 模块，调整 Spotify 请求头、请求 URL 和 protobuf 响应字段。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "music.note"
+
+scriptings:
+  - http_request:
+      name: "Spotify 删除缓存头"
+      match: "^https://(spclient\\.wg\\.spotify\\.com|.*-spclient\\.spotify\\.com(:443)?)/user-customization-service/v1/customize$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/spotify_customize_request.js"
+      timeout: 10
+  - http_request:
+      name: "Spotify 艺人与专辑请求修正"
+      match: "^https://(spclient\\.wg\\.spotify\\.com|.*-spclient\\.spotify\\.com(:443)?)/(artistview/v1/artist|album-entity-view/v2/album)/.*$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/spotify_artist_album_request.js"
+      timeout: 10
+  - http_response:
+      name: "Spotify Premium protobuf 响应"
+      match: "^https://(spclient\\.wg\\.spotify\\.com|.*-spclient\\.spotify\\.com(:443)?)/(bootstrap/v1/bootstrap|user-customization-service/v1/customize)$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/spotify_proto_response.js"
+      body_required: true
+      binary_body: true
+      max_size: 5242880
+      timeout: 20
+
+mitm:
+  hostnames:
+    - "spclient.wg.spotify.com"
+    - "*.spclient.spotify.com"
