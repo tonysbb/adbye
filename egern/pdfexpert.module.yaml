@@ -1,17 +1,18 @@
 name: "PDF Expert Pro"
-description: "Egern 模块，重写 PDF Expert 订阅刷新请求体。"
+description: "Egern 模块，改写 PDF Expert 订阅状态检查响应。"
 author: "tonysbb"
 homepage: "https://github.com/tonysbb/adbye"
 manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
 icon: "doc.richtext.fill"
 
 scriptings:
-  - http_request:
-      name: "PDF Expert 订阅刷新"
-      match: "^https://license\\.pdfexpert\\.com/api/2\\.0/pdfexpert6/subscription/refresh$"
+  - http_response:
+      name: "PDF Expert 订阅状态"
+      match: "^https://license\\.readdle\\.com/api/.*/subscription/(refresh|check)$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_subscription_refresh.js"
+      body_required: true
       timeout: 10
 
 mitm:
   hostnames:
-    - "license.pdfexpert.com"
+    - "license.readdle.com"

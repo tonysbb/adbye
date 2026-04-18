@@ -88,7 +88,8 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - iLovePDF Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - PDF Expert Pro：
-  - Quantumult X `script-request-body` 改成 Egern `http_request`
+  - Quantumult X / Surge 的订阅检查改写改成 Egern `http_response`
+  - `license.readdle.com` 已写入 `mitm.hostnames`
 - 扫描全能王 Pro：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
