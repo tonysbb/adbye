@@ -8,7 +8,7 @@ icon: "doc.richtext.fill"
 scriptings:
   - http_request:
       name: "PDF Expert 伪造收据请求"
-      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/(?:account/attach_receipt|subscription/refresh)(?:\\?.*)?$"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/subscription/refresh(?:\\?.*)?$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_receipt_request.js"
       body_required: true
       timeout: 10
