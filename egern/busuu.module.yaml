@@ -1,0 +1,18 @@
+name: "Busuu Premium"
+description: "Egern 模块，改写 Busuu 用户信息接口的会员字段。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "character.book.closed.fill"
+
+scriptings:
+  - http_response:
+      name: "Busuu 用户信息改写"
+      match: "^https://api\\.busuu\\.com/users/me$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/busuu_user.js"
+      body_required: true
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "api.busuu.com"

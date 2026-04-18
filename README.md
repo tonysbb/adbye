@@ -24,6 +24,8 @@
   - PDF Expert Pro
 - `egern/camscanner.module.yaml`
   - 扫描全能王 Pro
+- `egern/busuu.module.yaml`
+  - Busuu Premium
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -35,12 +37,14 @@
 ├── jpapp.conf
 └── egern
     ├── camscanner.module.yaml
+    ├── busuu.module.yaml
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
     ├── pdfexpert.module.yaml
     ├── spotify.module.yaml
     └── scripts
         ├── camscanner_query_property.js
+        ├── busuu_user.js
         ├── ilovepdf_user.js
         ├── pdfexpert_subscription_refresh.js
         ├── rakuten_link_empty.js
@@ -64,6 +68,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/jpapp.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/pdfexpert.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 ```
 
@@ -78,6 +83,8 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - PDF Expert Pro：
   - Quantumult X `script-request-body` 改成 Egern `http_request`
 - 扫描全能王 Pro：
+  - Quantumult X `script-response-body` 改成 Egern `http_response`
+- Busuu Premium：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
@@ -107,3 +114,4 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - `2025-11-19`：增加 Rakuten Link banner 广告拦截
 - `2026-04-18`：新增日本 App 的 Egern 模块
 - `2026-04-18`：新增 iLovePDF、PDF Expert、扫描全能王、Spotify 的 Egern 模块
+- `2026-04-18`：新增 Busuu 的 Egern 模块
