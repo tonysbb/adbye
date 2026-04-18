@@ -6,16 +6,16 @@ manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
 icon: "doc.richtext.fill"
 
 scriptings:
+  - http_request:
+      name: "PDF Expert 伪造收据请求"
+      match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/(?:account/attach_receipt|subscription/refresh)(?:\\?.*)?$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_receipt_request.js"
+      body_required: true
+      timeout: 10
   - http_response:
       name: "PDF Expert 恢复购买"
       match: "^https://license\\.pdfexpert\\.com(?::443)?/api/2\\.0/pdfexpert6/account/attach_receipt(?:\\?.*)?$"
       script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_attach_receipt.js"
-      body_required: true
-      timeout: 10
-  - http_response:
-      name: "PDF Expert Usage"
-      match: "^https://middleman\\.apps\\.readdle\\.com(?::443)?/usage(?:\\?.*)?$"
-      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/pdfexpert_usage.js"
       body_required: true
       timeout: 10
   - http_response:
