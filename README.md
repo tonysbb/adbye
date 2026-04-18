@@ -24,6 +24,8 @@
   - 扫描全能王 Pro
 - `egern/busuu.module.yaml`
   - Busuu Premium
+- `egern/youtube_ads.module.yaml`
+  - YouTube 去广告
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -40,6 +42,7 @@
     ├── ilovepdf.module.yaml
     ├── jpapp.module.yaml
     ├── spotify.module.yaml
+    ├── youtube_ads.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
@@ -48,7 +51,8 @@
         ├── respond_empty_200.js
         ├── spotify_artist_album_request.js
         ├── spotify_customize_request.js
-        └── spotify_proto_response.js
+        ├── spotify_proto_response.js
+        └── youtube.response.legacy.js
 ```
 
 ## 远程地址
@@ -67,6 +71,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/ilovepdf.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/camscanner.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
+https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.yaml
 ```
 
 ## 已完成的重写方式
@@ -81,6 +86,10 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
   - Quantumult X `script-response-body` 改成 Egern `http_response`
 - Busuu Premium：
   - Quantumult X `script-response-body` 改成 Egern `http_response`
+- YouTube 去广告：
+  - `url 302` 改成 Egern `url_rewrites`
+  - `reject-200` 改成 Egern `http_request` 空响应
+  - `script-response-body` 改成 Egern `http_response`
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
@@ -110,3 +119,4 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 - `2026-04-18`：新增日本 App 的 Egern 模块
 - `2026-04-18`：新增 iLovePDF、扫描全能王、Spotify 的 Egern 模块
 - `2026-04-18`：新增 Busuu 的 Egern 模块
+- `2026-04-18`：新增 YouTube 的 Egern 模块
