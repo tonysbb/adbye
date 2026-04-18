@@ -1,0 +1,39 @@
+name: "日本 App 去广告"
+description: "Egern 模块，拦截 LINE、东京 Metro App、Rakuten Link 的已知广告请求。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Japan.png"
+
+url_rewrites:
+  - match: "^https://a\\.line\\.me/(er/lads|lgfp/lad)/v1/?$"
+    location: "https://reject/"
+    status_code: 307
+  - match: "^https://legy-(backup|jp)\\.line-apps\\.com(:443)?/ext/lgfp/lad/v1$"
+    location: "https://reject/"
+    status_code: 307
+  - match: "^https://legy-jp\\.line-apps\\.com:443/ext/smartch/banner/sch/v1(?:\\?[\\w\\d\\-\\.\\=&%#]+)?$"
+    location: "https://reject/"
+    status_code: 307
+  - match: "^https://api-mahbpc\\.tokyometro-myapp\\.navitime\\.jp/app_v2/advertised_banners$"
+    location: "https://reject/"
+    status_code: 307
+  - match: "^https://static\\.tokyometro-myapp\\.navitime\\.jp/images/advertised_banners$"
+    location: "https://reject/"
+    status_code: 307
+
+scriptings:
+  - http_request:
+      name: "Rakuten Link 广告空响应"
+      match: "^https?://s-ad\\.rmp\\.rakuten\\.co\\.jp/.*$"
+      script_url: "https://raw.githubusercontent.com/tonysbb/adbye/main/egern/scripts/rakuten_link_empty.js"
+      timeout: 10
+
+mitm:
+  hostnames:
+    - "a.line.me"
+    - "legy-jp.line-apps.com"
+    - "legy-backup.line-apps.com"
+    - "api-mahbpc.tokyometro-myapp.navitime.jp"
+    - "static.tokyometro-myapp.navitime.jp"
+    - "s-ad.rmp.rakuten.co.jp"
