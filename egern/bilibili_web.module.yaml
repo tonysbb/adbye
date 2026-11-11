@@ -1,0 +1,30 @@
+name: "Bilibili Web Helper"
+description: "过滤 B 站网页首页推荐接口中明确标记的广告，并拦截网页日志上报。"
+author: "tonysbb"
+homepage: "https://github.com/tonysbb/adbye"
+manual: "https://github.com/tonysbb/adbye/blob/main/README.md"
+icon: "play.rectangle.fill"
+
+url_rewrites:
+  - match: '^https://data\.bilibili\.com(?::443)?/log/web(?:\?.*)?$'
+    location: "http://reject-200/"
+
+body_rewrites:
+  - response_jq:
+      match: '^https://api\.bilibili\.com(?::443)?/x/web-interface/(?:wbi/)?index/top/feed/rcmd(?:\?.*)?$'
+      filter: >-
+        if type == "object" and .code == 0
+          and (.data | type) == "object" and (.data.item | type) == "array"
+        then .data.item |= map(select(
+          if type == "object" then
+            .goto != "ad" and .card_goto != "ad"
+            and ((.business_info | objects | .is_ad) // false) != true
+            and ((.business_info | objects | .cm_mark) // 0 | tostring) != "1"
+          else true end
+        ))
+        else . end
+
+mitm:
+  hostnames:
+    - "api.bilibili.com"
+    - "data.bilibili.com"
