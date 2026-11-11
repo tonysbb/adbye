@@ -97,20 +97,12 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module
 - YouTube 合并版：
   - 保留 `Maasea` 响应增强脚本的默认行为
   - 叠加 `adbye` 的广告请求空响应与 `ctier` URL 修正
-  - 使用 `response_jq` 移除 YouTube 网页播放器 JSON 响应中的广告字段，已在 macOS Safari 实测
+  - 使用 `response_jq` 移除网页播放器 `player` 和 `get_watch` 响应中的广告字段。macOS Safari 已验证可跳过测试视频的片头广告，正片播放和进度跳转正常。
   - 作为单独模块测试，不建议和 `youtube_ads.module.yaml` 同时启用
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`
   - URL 修正改成 Egern `http_request`
   - protobuf 响应改写改成 Egern `http_response` + `binary_body`
-
-## YouTube 合并版：macOS Safari 去广告
-
-在 Egern 的「模块」中导入并启用 [YouTube 合并版](https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module.yaml)。如果已在使用，从模块菜单点「更新」即可。合并版和 `youtube_ads.module.yaml` 二选一。网页响应改写依赖 Egern 的 HTTPS 解密及已受信任的证书。
-
-网页规则只匹配 `www.youtube.com` 的 `/youtubei/v1/player` 和 `/youtubei/v1/get_watch`，从 JSON 响应移除 `adPlacements`、`playerAds` 和 `adSlots`。iPhone App 的播放器响应继续由原脚本处理。
-
-macOS Safari 已用同一条视频完成开关对照：关闭规则时出现片头广告，启用后直接进入正片，播放和进度跳转正常。该次验证覆盖上述网页接口，广告若来自其他接口或嵌在初始页面中，效果可能不同。
 
 ## 使用说明
 
