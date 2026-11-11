@@ -97,6 +97,7 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module
 - YouTube 合并版：
   - 保留 `Maasea` 响应增强脚本的默认行为
   - 叠加 `adbye` 的广告请求空响应与 `ctier` URL 修正
+  - 使用 `response_jq` 移除 YouTube 网页播放器 JSON 响应中的广告字段，已在 macOS Safari 实测
   - 作为单独模块测试，不建议和 `youtube_ads.module.yaml` 同时启用
 - Spotify Premium：
   - 请求头处理改成 Egern `http_request`

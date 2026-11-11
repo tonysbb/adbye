@@ -10,6 +10,11 @@ url_rewrites:
     location: "$1$2$3"
     status_code: 302
 
+body_rewrites:
+  - response_jq:
+      match: '^https://www\.youtube\.com(?::443)?/youtubei/v1/(?:player|get_watch)(?:\?|$)'
+      filter: 'walk(if type == "object" then del(.adPlacements, .playerAds, .adSlots) else . end)'
+
 scriptings:
   - http_request:
       name: "YouTube OAD 空响应"
