@@ -28,8 +28,6 @@
   - YouTube 去广告
 - `egern/youtube_merged.module.yaml`
   - YouTube 合并版
-- `egern/bilibili_web.module.yaml`
-  - Bilibili Web Helper，适用于经过 Egern 的网页流量
 - `egern/spotify.module.yaml`
   - Spotify Premium
 
@@ -48,7 +46,6 @@
     ├── spotify.module.yaml
     ├── youtube_ads.module.yaml
     ├── youtube_merged.module.yaml
-    ├── bilibili_web.module.yaml
     └── scripts
         ├── camscanner_query_property.js
         ├── busuu_user.js
@@ -79,7 +76,6 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/busuu.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/spotify.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_ads.module.yaml
 https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module.yaml
-https://raw.githubusercontent.com/tonysbb/adbye/main/egern/bilibili_web.module.yaml
 ```
 
 ## 已完成的重写方式
@@ -108,32 +104,13 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/bilibili_web.module.y
   - URL 修正改成 Egern `http_request`
   - protobuf 响应改写改成 Egern `http_response` + `binary_body`
 
-## Bilibili Web Helper
+## YouTube 合并版：macOS Safari 去广告
 
-首版过滤首页推荐接口 `/x/web-interface/(wbi/)index/top/feed/rcmd` 中明确标记的广告卡片，并让 `data.bilibili.com/log/web` 返回空的 HTTP 200。首次加载时已经嵌在首页 HTML 里的推广卡片不在这条过滤规则的覆盖范围内。需要 Egern 能解密模块列出的两个主机。
+在 Egern 的「模块」中导入并启用 [YouTube 合并版](https://raw.githubusercontent.com/tonysbb/adbye/main/egern/youtube_merged.module.yaml)。如果已在使用，从模块菜单点「更新」即可。合并版和 `youtube_ads.module.yaml` 二选一。网页响应改写依赖 Egern 的 HTTPS 解密及已受信任的证书。
 
-以下按 [SukkaW 原脚本的入口](https://github.com/SukkaW/Make-Bilibili-Great-Than-Ever-Before/blob/master/src/index.ts) 逐项对照。首版只实现网络层子集，已用 JSON 样例验证过滤规则，Safari 实际广告覆盖范围待实测。
+网页规则只匹配 `www.youtube.com` 的 `/youtubei/v1/player` 和 `/youtubei/v1/get_watch`，从 JSON 响应移除 `adPlacements`、`playerAds` 和 `adSlots`。iPhone App 的播放器响应继续由原脚本处理。
 
-| 原脚本功能 | Egern 首版与后续建议 |
-| --- | --- |
-| 限制本地存储和 IndexedDB 写入 | 依赖页面存储 API，建议保留在浏览器端。 |
-| 禁用日志上报和跟踪 | 首版只拦截网页日志端点。浏览器内的上报函数仍由页面管理。 |
-| 禁用 AV1 | 原脚本改写浏览器解码能力探测。可后续验证能否从播放响应中只过滤 AV1 候选。 |
-| 直播增强和优先原画 | 部分 URL 可定向改写。先验证直播可正常回退，再考虑加入。 |
-| 专栏解除复制限制 | 属于网页剪贴板事件，建议保留在浏览器端。 |
-| 显示 4K、HDR 等播放选项 | 依赖浏览器环境和播放器设置，建议保留在浏览器端。 |
-| 避免 PCDN | 可试验从实际播放响应中移除 PCDN 候选，前提是仍有可用的普通 CDN。 |
-| 禁用 WebRTC P2P | 原脚本改写页面 WebRTC API，不能用普通 HTTP 重写等价实现。 |
-| 去广告 | 首版移除推荐接口中带明确广告标记的卡片。 |
-| 首页样式优化 | 依赖 CSS；如需继续，可单独评估首屏 HTML 和样式。 |
-| 动态列表优化 | 涉及页面样式和加载时机，建议保留在浏览器端。 |
-| 播放器宽度适配 | 依赖 CSS，建议保留在浏览器端。 |
-| 移除网页黑白滤镜 | 依赖 CSS，建议保留在浏览器端。 |
-| 清理链接跟踪参数 | 可限于少数普通网页链接做重定向。站内导航和签名请求需要区别处理。 |
-| Thread Ripper 并发分片下载 | 依赖播放器的分片、并发调度及回退，建议保留在浏览器端。 |
-| 使用系统字体 | 依赖 CSS，建议保留在浏览器端。 |
-
-下一步建议先验证首页首次加载和换一换，再根据播放体验选择普通 CDN 优先或链接清理。
+macOS Safari 已用同一条视频完成开关对照：关闭规则时出现片头广告，启用后直接进入正片，播放和进度跳转正常。该次验证覆盖上述网页接口，广告若来自其他接口或嵌在初始页面中，效果可能不同。
 
 ## 使用说明
 
@@ -162,4 +139,4 @@ https://raw.githubusercontent.com/tonysbb/adbye/main/egern/bilibili_web.module.y
 - `2026-04-18`：新增 Busuu 的 Egern 模块
 - `2026-04-18`：新增 YouTube 的 Egern 模块
 - `2026-04-19`：新增 YouTube 合并版模块
-- `2026-11-11`：新增 Bilibili Web Helper 模块
+- `2026-11-11`：YouTube 合并版增加网页播放器去广告规则，并在 macOS Safari 实测
